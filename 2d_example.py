@@ -24,10 +24,11 @@ p = Rectangle((width/5,height/15),(width/2,height/2),(250,0,0),"Basic Charakter 
 p.set_image(my_walks.image_at((0,50,50,50)),True)
 p.set_size((100,100))
 p.z_position = 0
-my_sprites = {"p":p}
+my_sprites = {}
+g1 = statue((width/2,height/2,200))
+my_sprites["fg"] = g1
+my_sprites["p"] = p
 #you have to summand y+(z+z:4)*-1
-g2 = house((width/2,height/2,100))
-my_sprites["fg1"] = g2
 printing_row = []
 
 def make_row(key):
