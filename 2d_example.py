@@ -20,6 +20,7 @@ my_sprites = {"p":p}
 #you have to summand y+(z+z:4)*-1
 g2 = statue((width/2,height/2,40))
 g1 = statue((width/2,height/2,150))
+my_sprites["fg"] = g2
 my_sprites["fg1"] = g1
 printing_row = []
 
