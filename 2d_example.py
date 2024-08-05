@@ -26,9 +26,11 @@ p.set_size((100,100))
 p.z_position = 0
 my_sprites = {}
 g1 = statue((width/2,height/2,200))
+g3 = house((width/2-100,height/2,150))
 g2 = statue((width/2,height/2,100))
 my_sprites["fg"] = g1
 my_sprites["fg1"] = g2
+my_sprites["fg2"] = g3
 my_sprites["p"] = p
 #you have to summand y+(z+z:4)*-1
 printing_row = []
