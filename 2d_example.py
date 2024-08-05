@@ -23,10 +23,10 @@ p.set_image(my_walks.image_at((0,50,50,50)),True)
 p.set_size((100,100))
 p.z_position = 0
 my_sprites = {"p":p}
-g1 = statue((width/2,height/2-10,-10))
-g2 = statue((width/2,height/2+40,+40))
-my_sprites["fg"] = g1
+g2 = statue((width/2,height/2-40,40))
+my_sprites["fg"] = g2
 printing_row = []
+
 def make_row(key):
     c = 0
     d = True
@@ -50,12 +50,13 @@ for key in my_sprites:
         printing_row.append(key)
         
 while True:
+    print(my_sprites["fg"].z_position,my_sprites["p"].z_position)
     if pressed != False:
         if pressed == "up":
             for key in printing_row:
                 if not key == "p":
                     my_sprites[key].change_position(0,0.2)
-                    my_sprites[key].z_position += 0.2
+            my_sprites["p"].z_position += 0.2
             del printing_row[printing_row.index("p")]
             make_row("p")
 
@@ -63,7 +64,7 @@ while True:
             for key in printing_row:
                 if not key == "p":
                     my_sprites[key].change_position(0,-0.2)
-                    my_sprites[key].z_position -= 0.2
+            my_sprites["p"].z_position -= 0.2
             del printing_row[printing_row.index("p")]
             make_row("p")
 
