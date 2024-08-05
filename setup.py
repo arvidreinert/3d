@@ -15,17 +15,19 @@ clock = pygame.time.Clock()
 class SpriteSheet:
 
     def __init__(self, filename):
-        self.sheet = pygame.image.load(filename).convert()
+        self.sheet = pygame.image.load(filename).convert_alpha()
         print("initialysed")
-    def image_at(self, rectangle, colorkey = None):
+
+    def image_at(self, rectangle, colorkey=None):
         rect = pygame.Rect(rectangle)
-        image = pygame.Surface(rect.size).convert()
+        image = pygame.Surface(rect.size, pygame.SRCALPHA).convert_alpha()
         image.blit(self.sheet, (0, 0), rect)
         if colorkey is not None:
-            if colorkey is -1:
-                colorkey = image.get_at((0,0))
+            if colorkey == -1:
+                colorkey = image.get_at((0, 0))
             image.set_colorkey(colorkey, pygame.RLEACCEL)
         return image
+
 
     def images_load(self, rects, colorkey = None):
         return [self.image_at(rect, colorkey) for rect in rects]
