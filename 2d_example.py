@@ -1,12 +1,20 @@
 from setup import *
 from rectangle import Rectangle
 #the rectangles position in the middle
-def statue(location=(0,0,0)):
+def statue(location=(0,height/2,0)):
     v = location[2]+10
     statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
     statue.set_image(my_sprite_sheet.image_at((16*44,16*18,32,64)),True)
     statue.z_position = location[2]
     statue.set_size((50,100))
+    return statue
+
+def house(location=(0,height/2,0)):
+    v = location[2]-10
+    statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
+    statue.set_image(my_sprite_sheet.image_at((16*32,16*18,48,64)),True)
+    statue.z_position = location[2]
+    statue.set_size((75,100))
     return statue
 
 pressed =False
@@ -18,7 +26,7 @@ p.set_size((100,100))
 p.z_position = 0
 my_sprites = {"p":p}
 #you have to summand y+(z+z:4)*-1
-g2 = statue((width/2,height/2,40))
+g2 = house((width/2,height/2,100))
 my_sprites["fg1"] = g2
 printing_row = []
 
@@ -43,6 +51,8 @@ for key in my_sprites:
         make_row(key)
     else:
         printing_row.append(key)
+    print(f"loading{key}")
+print("sorted reaady")
         
 while True:
     if pressed != False:
