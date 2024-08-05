@@ -26,7 +26,9 @@ p.set_size((100,100))
 p.z_position = 0
 my_sprites = {}
 g1 = statue((width/2,height/2,200))
+g2 = statue((width/2,height/2,100))
 my_sprites["fg"] = g1
+my_sprites["fg1"] = g2
 my_sprites["p"] = p
 #you have to summand y+(z+z:4)*-1
 printing_row = []
@@ -36,7 +38,7 @@ def make_row(key):
     d = True
     while d:
         if my_sprites[key].z_position >= my_sprites[printing_row[c]].z_position:
-            printing_row.insert(c-1,key)
+            printing_row.insert(c,key)
             d = False
         else:
             if c <= len(printing_row)-2:
