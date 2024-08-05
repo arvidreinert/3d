@@ -1,15 +1,9 @@
 from setup import *
 from rectangle import Rectangle
 #the rectangles position in the middle
-def gate(location=(0,0,0)):
-    fence = Rectangle((200,200),(location[0],location[1]),(250,0,0),"16_p_tileset.png")
-    fence.set_image(my_sprite_sheet.image_at((16*38,16,32,16)),True)
-    fence.z_position = location[2]
-    fence.set_size((50,50))
-    return fence
-
 def statue(location=(0,0,0)):
-    statue = Rectangle((200,200),(location[0],location[1]),(250,0,0),"16_p_tileset.png")
+    v = location[2]+location[2]/4
+    statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
     statue.set_image(my_sprite_sheet.image_at((16*44,16*18,32,64)),True)
     statue.z_position = location[2]
     statue.set_size((50,100))
@@ -23,8 +17,10 @@ p.set_image(my_walks.image_at((0,50,50,50)),True)
 p.set_size((100,100))
 p.z_position = 0
 my_sprites = {"p":p}
-g2 = statue((width/2,height/2-40,40))
-my_sprites["fg"] = g2
+#you have to summand y+(z+z:4)*-1
+g2 = statue((width/2,height/2,40))
+g1 = statue((width/2,height/2,150))
+my_sprites["fg1"] = g1
 printing_row = []
 
 def make_row(key):
@@ -50,7 +46,6 @@ for key in my_sprites:
         printing_row.append(key)
         
 while True:
-    print(my_sprites["fg"].z_position,my_sprites["p"].z_position)
     if pressed != False:
         if pressed == "up":
             for key in printing_row:
