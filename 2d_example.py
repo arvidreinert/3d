@@ -20,8 +20,22 @@ def house(location=(0,height/2,0)):
 pressed =False
 my_sprite_sheet = SpriteSheet("16_p_tileset.png")
 my_walks = SpriteSheet("Basic Charakter Spritesheet.png")
+my_walk = []
+walk_back = [1]
+for i in range(3):
+    walk_back.append(my_walks.image_at((50*(i+1),50,50,50)))
+walk_front = [1]
+for i in range(3):
+    walk_front.append(my_walks.image_at((50*(i+1),0,50,50)))
+walk_left = [1]
+for i in range(3):
+    walk_left.append(my_walks.image_at((50*(i+1),100,50,50)))
+walk_right = [1]
+for i in range(3):
+    walk_right.append(my_walks.image_at((50*(i+1),150,50,50)))
+
 p = Rectangle((width/5,height/15),(width/2,height/2),(250,0,0),"Basic Charakter Spritesheet.png")
-p.set_image(my_walks.image_at((0,50,50,50)),True)
+p.set_image(walk_front[walk_front[0]],True)
 p.set_size((100,100))
 p.z_position = 0
 my_sprites = {}
@@ -58,8 +72,21 @@ for key in my_sprites:
         printing_row.append(key)
     print(f"loading{key}")
 print("sorted reaady")
-        
+counter = 0     
+
 while True:
+    if counter <= 29:
+        counter += 1
+    else:
+        p.set_image(my_walk[my_walk[0]],True)
+        p.set_size((100,100))
+        if my_walk[0] <= 3:
+            my_walk[0] += 1
+        else:
+            my_walk[0] = 1
+        counter = 0
+
+    clock.tick(30)
     if pressed != False:
         if pressed == "up":
             for key in printing_row:
