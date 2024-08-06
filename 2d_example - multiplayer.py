@@ -28,7 +28,7 @@ def tree(location=(0,height/2,0)):
 def desk(location=(0,height/2,0)):
     v = location[2]+19
     statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"Interiors_free_48x48.png")
-    statue.set_image(my_room_sheet.image_at((48*5,48*10,128,128)),True)
+    statue.set_image(my_room_sheet.image_at((48*13,48*60,128,128)),True)
     statue.z_position = location[2]
     statue.set_size((75,100))
     return statue
