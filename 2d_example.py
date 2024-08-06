@@ -34,8 +34,9 @@ for i in range(3):
     walk_right.append(my_walks.image_at((50*(i+1),150,50,50)))
 
 my_walk = walk_front
+my_walk[0] = "idle"
 p = Rectangle((width/5,height/15),(width/2,height/2),(250,0,0),"Basic Charakter Spritesheet.png")
-p.set_image(my_walk[my_walk[0]],True)
+p.set_image(walk_front[1],True)
 p.set_size((100,100))
 p.z_position = 0
 my_sprites = {}
@@ -79,14 +80,17 @@ while True:
     if counter <= 4:
         counter += 1
     else:
-        print(my_walk[0])
-        p.set_image(my_walk[my_walk[0]],True)
-        p.set_size((100,100))
-        if my_walk[0] <= 2:
-            my_walk[0] += 1
+        if my_walk[0] != "idle":
+            print("not idle")
+            p.set_image(my_walk[my_walk[0]],True)
+            if my_walk[0] <= 2:
+                my_walk[0] += 1
+            else:
+                my_walk[0] = 1
+            counter = 0
         else:
-            my_walk[0] = 1
-        counter = 0
+            p.set_image(walk_front[1],True)
+            counter = 0
 
     clock.tick(30)
     if pressed != False:
@@ -121,16 +125,21 @@ while True:
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
+                my_walk = walk_back
                 pressed = "up"
             elif event.key == pygame.K_DOWN:
+                my_walk = walk_front
                 pressed = "down"
             elif event.key == pygame.K_LEFT:
+                my_walk = walk_left
                 pressed = "left"
             elif event.key == pygame.K_RIGHT:
+                my_walk = walk_right
                 pressed = "right"
 
         if event.type == pygame.KEYUP:
             pressed = False
+            my_walk[0] = "idle"
 
     screen.fill((250,250,250))
     for key in printing_row:
