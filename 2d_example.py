@@ -20,6 +20,9 @@ def house(location=(0,height/2,0)):
 pressed =False
 my_sprite_sheet = SpriteSheet("16_p_tileset.png")
 my_walks = SpriteSheet("Basic Charakter Spritesheet.png")
+walk_idle = [1]
+for i in range(3):
+    walk_idle.append(my_walks.image_at((50,50*(i+1),50,50)))
 walk_back = [1]
 for i in range(3):
     walk_back.append(my_walks.image_at((50*(i+1),50,50,50)))
@@ -33,8 +36,7 @@ walk_right = [1]
 for i in range(3):
     walk_right.append(my_walks.image_at((50*(i+1),150,50,50)))
 
-my_walk = walk_front
-my_walk[0] = "idle"
+my_walk = walk_idle
 p = Rectangle((width/5,height/15),(width/2,height/2),(250,0,0),"Basic Charakter Spritesheet.png")
 p.set_image(walk_front[1],True)
 p.set_size((100,100))
@@ -47,6 +49,7 @@ my_sprites["fg"] = g1
 my_sprites["fg1"] = g2
 my_sprites["fg2"] = g3
 my_sprites["p"] = p
+out_of_charakter = False
 #you have to summand y+(z+z:4)*-1
 printing_row = []
 
@@ -80,17 +83,13 @@ while True:
     if counter <= 4:
         counter += 1
     else:
-        if my_walk[0] != "idle":
-            print("not idle")
-            p.set_image(my_walk[my_walk[0]],True)
-            if my_walk[0] <= 2:
-                my_walk[0] += 1
-            else:
-                my_walk[0] = 1
-            counter = 0
+        p.set_image(my_walk[my_walk[0]],True)
+        if my_walk[0] <= 2:
+            my_walk[0] += 1
         else:
-            p.set_image(walk_front[1],True)
-            counter = 0
+            my_walk[0] = 1
+        p.set_size((100,100))
+        counter = 0
 
     clock.tick(30)
     if pressed != False:
@@ -99,6 +98,8 @@ while True:
                 if not key == "p":
                     my_sprites[key].change_position(0,0.7)
             my_sprites["p"].z_position += 0.7
+            if out_of_charakter == True:
+                my_sprites["p"].change_position(0,0.7)
             del printing_row[printing_row.index("p")]
             make_row("p")
 
@@ -107,6 +108,8 @@ while True:
                 if not key == "p":
                     my_sprites[key].change_position(0,-0.7)
             my_sprites["p"].z_position -= 0.7
+            if out_of_charakter == True:
+                my_sprites["p"].change_position(0,-0.7)
             del printing_row[printing_row.index("p")]
             make_row("p")
 
@@ -114,11 +117,15 @@ while True:
             for key in printing_row:
                 if not key == "p":
                     my_sprites[key].change_position(-0.7,0)
+            if out_of_charakter == True:
+                my_sprites["p"].change_position(-0.7,0)
 
         if pressed == "left":
             for key in printing_row:
                 if not key == "p":
                     my_sprites[key].change_position(0.7,0)
+            if out_of_charakter == True:
+                my_sprites["p"].change_position(0.7,0)
         
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -136,10 +143,15 @@ while True:
             elif event.key == pygame.K_RIGHT:
                 my_walk = walk_right
                 pressed = "right"
+            elif event.key == pygame.K_SPACE:
+                if out_of_charakter == True:
+                    out_of_charakter = False
+                else:
+                    out_of_charakter = True
 
         if event.type == pygame.KEYUP:
+            my_walk = walk_idle
             pressed = False
-            my_walk[0] = "idle"
 
     screen.fill((250,250,250))
     for key in printing_row:
