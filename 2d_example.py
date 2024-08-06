@@ -79,7 +79,6 @@ print("sorted reaady")
 counter = 0     
 
 while True:
-    print(clock.get_fps())
     if counter <= 4:
         counter += 1
     else:
@@ -97,8 +96,10 @@ while True:
             for key in printing_row:
                 if not key == "p":
                     my_sprites[key].change_position(0,0.7)
+                    if out_of_charakter == True:
+                        my_sprites[key].change_position(0,0.7)
             if out_of_charakter == True:
-                my_sprites["p"].change_position(0,0.7)
+                my_sprites["p"].change_position(0,1.4)
             else:
                 my_sprites["p"].z_position += 0.7
             del printing_row[printing_row.index("p")]
@@ -108,8 +109,10 @@ while True:
             for key in printing_row:
                 if not key == "p":
                     my_sprites[key].change_position(0,-0.7)
+                    if out_of_charakter == True:
+                        my_sprites[key].change_position(0,-0.7)
             if out_of_charakter == True:
-                my_sprites["p"].change_position(0,-0.7)
+                my_sprites["p"].change_position(0,-1.4)
             else:
                 my_sprites["p"].z_position -= 0.7
             del printing_row[printing_row.index("p")]
@@ -119,15 +122,19 @@ while True:
             for key in printing_row:
                 if not key == "p":
                     my_sprites[key].change_position(-0.7,0)
+                    if out_of_charakter == True:
+                        my_sprites[key].change_position(-0.7,0)
             if out_of_charakter == True:
-                my_sprites["p"].change_position(-0.7,0)
+                my_sprites["p"].change_position(-1.4,0)
 
         if pressed == "left":
             for key in printing_row:
                 if not key == "p":
                     my_sprites[key].change_position(0.7,0)
+                    if out_of_charakter == True:
+                        my_sprites[key].change_position(0.7,0)
             if out_of_charakter == True:
-                my_sprites["p"].change_position(0.7,0)
+                my_sprites["p"].change_position(1.4,0)
         
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
