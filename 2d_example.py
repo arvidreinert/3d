@@ -97,9 +97,10 @@ while True:
             for key in printing_row:
                 if not key == "p":
                     my_sprites[key].change_position(0,0.7)
-            my_sprites["p"].z_position += 0.7
             if out_of_charakter == True:
                 my_sprites["p"].change_position(0,0.7)
+            else:
+                my_sprites["p"].z_position += 0.7
             del printing_row[printing_row.index("p")]
             make_row("p")
 
@@ -107,9 +108,10 @@ while True:
             for key in printing_row:
                 if not key == "p":
                     my_sprites[key].change_position(0,-0.7)
-            my_sprites["p"].z_position -= 0.7
             if out_of_charakter == True:
                 my_sprites["p"].change_position(0,-0.7)
+            else:
+                my_sprites["p"].z_position -= 0.7
             del printing_row[printing_row.index("p")]
             make_row("p")
 
