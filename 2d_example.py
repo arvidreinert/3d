@@ -20,7 +20,6 @@ def house(location=(0,height/2,0)):
 pressed =False
 my_sprite_sheet = SpriteSheet("16_p_tileset.png")
 my_walks = SpriteSheet("Basic Charakter Spritesheet.png")
-my_walk = []
 walk_back = [1]
 for i in range(3):
     walk_back.append(my_walks.image_at((50*(i+1),50,50,50)))
@@ -34,8 +33,9 @@ walk_right = [1]
 for i in range(3):
     walk_right.append(my_walks.image_at((50*(i+1),150,50,50)))
 
+my_walk = walk_front
 p = Rectangle((width/5,height/15),(width/2,height/2),(250,0,0),"Basic Charakter Spritesheet.png")
-p.set_image(walk_front[walk_front[0]],True)
+p.set_image(my_walk[my_walk[0]],True)
 p.set_size((100,100))
 p.z_position = 0
 my_sprites = {}
@@ -75,12 +75,14 @@ print("sorted reaady")
 counter = 0     
 
 while True:
-    if counter <= 29:
+    print(clock.get_fps())
+    if counter <= 4:
         counter += 1
     else:
+        print(my_walk[0])
         p.set_image(my_walk[my_walk[0]],True)
         p.set_size((100,100))
-        if my_walk[0] <= 3:
+        if my_walk[0] <= 2:
             my_walk[0] += 1
         else:
             my_walk[0] = 1
@@ -91,28 +93,28 @@ while True:
         if pressed == "up":
             for key in printing_row:
                 if not key == "p":
-                    my_sprites[key].change_position(0,0.2)
-            my_sprites["p"].z_position += 0.2
+                    my_sprites[key].change_position(0,0.7)
+            my_sprites["p"].z_position += 0.7
             del printing_row[printing_row.index("p")]
             make_row("p")
 
         if pressed == "down":
             for key in printing_row:
                 if not key == "p":
-                    my_sprites[key].change_position(0,-0.2)
-            my_sprites["p"].z_position -= 0.2
+                    my_sprites[key].change_position(0,-0.7)
+            my_sprites["p"].z_position -= 0.7
             del printing_row[printing_row.index("p")]
             make_row("p")
 
         if pressed == "right":
             for key in printing_row:
                 if not key == "p":
-                    my_sprites[key].change_position(-0.2,0)
+                    my_sprites[key].change_position(-0.7,0)
 
         if pressed == "left":
             for key in printing_row:
                 if not key == "p":
-                    my_sprites[key].change_position(0.2,0)
+                    my_sprites[key].change_position(0.7,0)
         
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
