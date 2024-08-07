@@ -8,7 +8,8 @@ pygame.joystick.init()
 my_screens = get_monitors()
 width,height = (my_screens[0].width-100,my_screens[0].height-100)
 screen = pygame.display.set_mode((width,height))
-surface = pygame.Surface((width, height), pygame.SRCALPHA)
+#, pygame.SRCALPHA
+surface = pygame.Surface((width, height))
 clock = pygame.time.Clock()
 
 #a class for handling sprite sheets:
@@ -20,7 +21,8 @@ class SpriteSheet:
 
     def image_at(self, rectangle, colorkey=None):
         rect = pygame.Rect(rectangle)
-        image = pygame.Surface(rect.size,pygame.SRCALPHA).convert_alpha()
+        #,pygame.SRCALPHA
+        image = pygame.Surface(rect.size).convert_alpha()
         image.blit(self.sheet, (0, 0), rect)
         if colorkey is not None:
             if colorkey == -1:

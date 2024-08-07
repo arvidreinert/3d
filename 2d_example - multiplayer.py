@@ -39,25 +39,31 @@ my_room_sheet = SpriteSheet("Interiors_free_48x48.png")
 my_walks = SpriteSheet("Basic Charakter Spritesheet.png")
 walk_idle = [1]
 for i in range(3):
-    walk_idle.append(my_walks.image_at((50,50*(i+1),30,30)))
+    walk_idle.append(my_walks.image_at((50,50*(i+1),40,40)))
 walk_back = [1]
 for i in range(3):
-    walk_back.append(my_walks.image_at((50*(i+1),50,30,30)))
+    walk_back.append(my_walks.image_at((50*(i+1),50,40,40)))
 walk_front = [1]
 for i in range(3):
-    walk_front.append(my_walks.image_at((50*(i+1),0,30,30)))
+    walk_front.append(my_walks.image_at((50*(i+1),0,40,40)))
 walk_left = [1]
 for i in range(3):
-    walk_left.append(my_walks.image_at((50*(i+1),100,30,30)))
+    walk_left.append(my_walks.image_at((50*(i+1),100,40,40)))
 walk_right = [1]
 for i in range(3):
-    walk_right.append(my_walks.image_at((50*(i+1),150,30,30)))
+    walk_right.append(my_walks.image_at((50*(i+1),150,40,40)))
 
 my_walk = walk_idle
 p = Rectangle((width/5,height/15),(width/2,height/2),(250,0,0),"Basic Charakter Spritesheet.png")
 p.set_image(walk_front[1],True)
 p.set_size((100,100))
 p.z_position = 0
+
+p1 = Rectangle((width/5,height/15),(width/2,height/2),(250,0,0),"Basic Charakter Spritesheet.png")
+p1.set_image(walk_front[1],True)
+p1.set_size((60,70))
+p1.z_position = 0
+
 my_sprites = {}
 g1 = statue((width/2,height/2,200))
 g3 = bookshelf((width/2-100,height/2,150))
@@ -66,6 +72,7 @@ my_sprites["statue back"] = g1
 my_sprites["statue front"] = g2
 my_sprites["bookshelf"] = g3
 my_sprites["p"] = p
+my_sprites["p1"] = p1
 out_of_charakter = False
 #you have to summand y+(z+z:4)*-1
 printing_row = []
@@ -104,7 +111,7 @@ while True:
             my_walk[0] += 1
         else:
             my_walk[0] = 1
-        p.set_size((60,70))
+        p.set_size((80,80))
         counter = 0
 
     clock.tick(30)
