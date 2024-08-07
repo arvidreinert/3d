@@ -200,7 +200,7 @@ while True:
 
         if event.type == pygame.KEYUP:
             my_walk = walk_idle
-            my_p1_walk = walk_idle
+            my_p1_walk = walk_idle 
             pressed = False
 
     screen.fill((250,250,250))
