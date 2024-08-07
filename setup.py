@@ -20,8 +20,7 @@ class SpriteSheet:
 
     def image_at(self, rectangle, colorkey=None):
         rect = pygame.Rect(rectangle)
-        #pygame.SRCALPHA
-        image = pygame.Surface(rect.size).convert_alpha()
+        image = pygame.Surface(rect.size,pygame.SRCALPHA).convert_alpha()
         image.blit(self.sheet, (0, 0), rect)
         if colorkey is not None:
             if colorkey == -1:

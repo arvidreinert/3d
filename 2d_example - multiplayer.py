@@ -104,7 +104,7 @@ while True:
             my_walk[0] += 1
         else:
             my_walk[0] = 1
-        p.set_size((100,100))
+        p.set_size((60,70))
         counter = 0
 
     clock.tick(30)
