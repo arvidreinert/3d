@@ -39,19 +39,19 @@ my_room_sheet = SpriteSheet("Interiors_free_48x48.png")
 my_walks = SpriteSheet("Basic Charakter Spritesheet.png")
 walk_idle = [1]
 for i in range(3):
-    walk_idle.append(my_walks.image_at((50,50*(i+1),50,50)))
+    walk_idle.append(my_walks.image_at((50,50*(i+1),30,30)))
 walk_back = [1]
 for i in range(3):
-    walk_back.append(my_walks.image_at((50*(i+1),50,50,50)))
+    walk_back.append(my_walks.image_at((50*(i+1),50,30,30)))
 walk_front = [1]
 for i in range(3):
-    walk_front.append(my_walks.image_at((50*(i+1),0,50,50)))
+    walk_front.append(my_walks.image_at((50*(i+1),0,30,30)))
 walk_left = [1]
 for i in range(3):
-    walk_left.append(my_walks.image_at((50*(i+1),100,50,50)))
+    walk_left.append(my_walks.image_at((50*(i+1),100,30,30)))
 walk_right = [1]
 for i in range(3):
-    walk_right.append(my_walks.image_at((50*(i+1),150,50,50)))
+    walk_right.append(my_walks.image_at((50*(i+1),150,30,30)))
 
 my_walk = walk_idle
 p = Rectangle((width/5,height/15),(width/2,height/2),(250,0,0),"Basic Charakter Spritesheet.png")
@@ -96,10 +96,6 @@ print("sorted reaady")
 counter = 0     
 
 while True:
-    for key in my_sprites:
-        if not key == "p":
-            if my_sprites["p"].get_colliding_with(my_sprites[key]):
-                print(key)
     if counter <= 4:
         counter += 1
     else:
