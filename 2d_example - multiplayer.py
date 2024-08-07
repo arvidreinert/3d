@@ -107,12 +107,16 @@ while True:
     if counter <= 4:
         counter += 1
     else:
+        p1.set_image(my_p1_walk[my_p1_walk[0]],True)
         p.set_image(my_walk[my_walk[0]],True)
         if my_walk[0] <= 2:
             my_walk[0] += 1
+            my_p1_walk[0] += 1
         else:
+            my_p1_walk[0] = 1
             my_walk[0] = 1
         p.set_size((80,80))
+        p1.set_size((80,80))
         counter = 0
 
     clock.tick(30)
@@ -125,41 +129,52 @@ while True:
                         my_sprites[key].change_position(0,0.7)
             if out_of_charakter == True:
                 my_sprites["p"].change_position(0,1.4)
+                my_sprites["p1"].change_position(0,1.4)
             else:
                 my_sprites["p"].z_position += 0.7
+                my_sprites["p1"].z_position += 0.7
             del printing_row[printing_row.index("p")]
             make_row("p")
+            del printing_row[printing_row.index("p1")]
+            make_row("p1")
 
         if pressed == "down":
             for key in printing_row:
-                if not key == "p":
+                if not key == "p" or "p1":
                     my_sprites[key].change_position(0,-0.7)
                     if out_of_charakter == True:
                         my_sprites[key].change_position(0,-0.7)
+
             if out_of_charakter == True:
                 my_sprites["p"].change_position(0,-1.4)
+                my_sprites["p1"].change_position(0,-1.4)
             else:
                 my_sprites["p"].z_position -= 0.7
+                my_sprites["p1"].z_position -= 0.7
             del printing_row[printing_row.index("p")]
             make_row("p")
+            del printing_row[printing_row.index("p1")]
+            make_row("p1")
 
         if pressed == "right":
             for key in printing_row:
-                if not key == "p":
+                if not key == "p" or "p1":
                     my_sprites[key].change_position(-0.7,0)
                     if out_of_charakter == True:
                         my_sprites[key].change_position(-0.7,0)
             if out_of_charakter == True:
                 my_sprites["p"].change_position(-1.4,0)
+                my_sprites["p1"].change_position(-1.4,0)
 
         if pressed == "left":
             for key in printing_row:
-                if not key == "p":
+                if not key == "p" or "p1":
                     my_sprites[key].change_position(0.7,0)
                     if out_of_charakter == True:
                         my_sprites[key].change_position(0.7,0)
             if out_of_charakter == True:
                 my_sprites["p"].change_position(1.4,0)
+                my_sprites["p1"].change_position(1.4,0)
         
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -185,6 +200,7 @@ while True:
 
         if event.type == pygame.KEYUP:
             my_walk = walk_idle
+            my_p1_walk = walk_idle
             pressed = False
 
     screen.fill((250,250,250))
