@@ -25,7 +25,7 @@ def tree(location=(0,height/2,0)):
     statue.set_size((75,100))
     return statue
 
-def desk(location=(0,height/2,0)):
+def bookshelf(location=(0,height/2,0)):
     v = location[2]+19
     statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"Interiors_free_48x48.png")
     statue.set_image(my_room_sheet.image_at((48*14,48*68,112,118)),True)
@@ -60,11 +60,11 @@ p.set_size((100,100))
 p.z_position = 0
 my_sprites = {}
 g1 = statue((width/2,height/2,200))
-g3 = desk((width/2-100,height/2,150))
+g3 = bookshelf((width/2-100,height/2,150))
 g2 = statue((width/2,height/2,100))
-my_sprites["fg"] = g1
-my_sprites["fg1"] = g2
-my_sprites["fg2"] = g3
+my_sprites["statue back"] = g1
+my_sprites["statue front"] = g2
+my_sprites["bookshelf"] = g3
 my_sprites["p"] = p
 out_of_charakter = False
 #you have to summand y+(z+z:4)*-1
@@ -96,6 +96,10 @@ print("sorted reaady")
 counter = 0     
 
 while True:
+    for key in my_sprites:
+        if not key == "p":
+            if my_sprites["p"].get_colliding_with(my_sprites[key]):
+                print(key)
     if counter <= 4:
         counter += 1
     else:
