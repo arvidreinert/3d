@@ -54,6 +54,7 @@ for i in range(3):
     walk_right.append(my_walks.image_at((50*(i+1),150,40,40)))
 
 my_walk = walk_idle
+my_p1_walk = walk_idle
 p = Rectangle((width/5,height/15),(width/2,height/2),(250,0,0),"Basic Charakter Spritesheet.png")
 p.set_image(walk_front[1],True)
 p.set_size((100,100))
@@ -61,7 +62,7 @@ p.z_position = 0
 
 p1 = Rectangle((width/5,height/15),(width/2,height/2),(250,0,0),"Basic Charakter Spritesheet.png")
 p1.set_image(walk_front[1],True)
-p1.set_size((60,70))
+p1.set_size((100,100))
 p1.z_position = 0
 
 my_sprites = {}
