@@ -141,5 +141,5 @@ class Rectangle():
     def return_perfect_colission(self,other_rectangle):
         my_mask = pygame.mask.from_surface(self.image)
         other_mask = pygame.mask.from_surface(other_rectangle.image)
-        return my_mask.overlap(other_mask,(other_rectangle.get_pos[0]-self.get_pos()[0],other_rectangle.get_pos[1]-self.get_pos()[1]))
+        return my_mask.overlap(other_mask,(other_rectangle.get_pos()[0]-self.get_pos()[0],other_rectangle.get_pos()[1]-self.get_pos()[1]))
         

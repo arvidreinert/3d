@@ -87,6 +87,8 @@ print("sorted reaady")
 counter = 0     
 
 while True:
+    if p.return_perfect_colission(my_sprites["fg2"]):
+        p.kill()
     if counter <= 4:
         counter += 1
     else:
