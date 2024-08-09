@@ -67,7 +67,7 @@ p.set_image(walk_front[1],True)
 p.set_size((100,100))
 p.z_position = 0
 my_sprites = {}
-living_house = mini_house((width/2-200,height/2,80))
+living_house = mini_house((width/2-200,height/2,85))
 tanne = tree((width/2-100,height/2,40))
 players_house = skyscraper((width/2,height/2,100))
 my_sprites["player_home"] = players_house
