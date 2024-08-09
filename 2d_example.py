@@ -17,6 +17,14 @@ def street_horizontal(location=(0,height/2,0),lenght=750):
     statue.set_size((lenght,200))
     return statue
 
+def street_vertical(location=(0,height/2,0),lenght=750):
+    v = location[2]+10
+    statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
+    statue.set_image(my_details.image_at((16*1,16*40,32,32)),True)
+    statue.z_position = 10000000
+    statue.set_size((200,lenght))
+    return statue
+
 def skyscraper(location=(0,height/2,0)):
     v = location[2]+100
     statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
@@ -79,10 +87,12 @@ my_sprites = {}
 living_house = mini_house((width/2-200,height/2,85))
 tanne = tree((width/2-100,height/2,40))
 street1 = street_horizontal((width/2-300,height/2,-100),1500)
+street2 = street_vertical((width/2-300,height/2,-100),500)
 players_house = skyscraper((width/2,height/2,100))
 my_sprites["player_home"] = players_house
 my_sprites["street1"] = street1
 my_sprites["tree1"] = tanne
+my_sprites["stret2"] = street2
 my_sprites["house1"] = living_house
 my_sprites["p"] = p
 out_of_charakter = False
