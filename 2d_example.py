@@ -26,11 +26,11 @@ def house(location=(0,height/2,0)):
     return statue
 
 def tree(location=(0,height/2,0)):
-    v = location[2]+19
+    v = location[2]+10
     statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
     statue.set_image(my_sprite_sheet.image_at((16*51,16*6,32,48)),True)
     statue.z_position = location[2]
-    statue.set_size((75,100))
+    statue.set_size((100,125))
     return statue
 
 pressed =False
@@ -59,7 +59,7 @@ p.set_image(walk_front[1],True)
 p.set_size((100,100))
 p.z_position = 0
 my_sprites = {}
-g3 = tree((width/2-100,height/2,120))
+g3 = tree((width/2-100,height/2,40))
 g2 = skyscraper((width/2,height/2,100))
 my_sprites["fg1"] = g2
 my_sprites["fg2"] = g3
