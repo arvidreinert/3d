@@ -17,6 +17,14 @@ def skyscraper(location=(0,height/2,0)):
     statue.set_size((150,325))
     return statue 
 
+def mini_house(location=(0,height/2,0)):
+    v = location[2]+50
+    statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
+    statue.set_image(my_houses.image_at((16*3,16*18,48,128)),True)
+    statue.z_position = location[2]
+    statue.set_size((150,325))
+    return statue 
+
 def house(location=(0,height/2,0)):
     v = location[2]-10
     statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
@@ -59,10 +67,12 @@ p.set_image(walk_front[1],True)
 p.set_size((100,100))
 p.z_position = 0
 my_sprites = {}
-g3 = tree((width/2-100,height/2,40))
-g2 = skyscraper((width/2,height/2,100))
-my_sprites["fg1"] = g2
-my_sprites["fg2"] = g3
+living_house = mini_house((width/2-100,height/2,100))
+tanne = tree((width/2-100,height/2,40))
+players_house = skyscraper((width/2,height/2,100))
+my_sprites["player_home"] = players_house
+my_sprites["tree1"] = tanne
+my_sprites["house1"] = living_house
 my_sprites["p"] = p
 out_of_charakter = False
 #you have to summand y+(z+z:4)*-1
