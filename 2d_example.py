@@ -9,6 +9,14 @@ def statue(location=(0,height/2,0)):
     statue.set_size((50,100))
     return statue
 
+def skyscraper(location=(0,height/2,0)):
+    v = location[2]+100
+    statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
+    statue.set_image(my_houses.image_at((16*3,16*45,48,128)),True)
+    statue.z_position = location[2]
+    statue.set_size((150,325))
+    return statue 
+
 def house(location=(0,height/2,0)):
     v = location[2]-10
     statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
@@ -28,6 +36,7 @@ def tree(location=(0,height/2,0)):
 pressed =False
 my_sprite_sheet = SpriteSheet("16_p_tileset.png")
 my_walks = SpriteSheet("Basic Charakter Spritesheet.png")
+my_houses = SpriteSheet("BD001.png")
 walk_idle = [1]
 for i in range(3):
     walk_idle.append(my_walks.image_at((50,50*(i+1),40,40)))
@@ -50,10 +59,8 @@ p.set_image(walk_front[1],True)
 p.set_size((100,100))
 p.z_position = 0
 my_sprites = {}
-g1 = statue((width/2,height/2,200))
-g3 = tree((width/2-100,height/2,150))
-g2 = statue((width/2,height/2,100))
-my_sprites["fg"] = g1
+g3 = tree((width/2-100,height/2,120))
+g2 = skyscraper((width/2,height/2,100))
 my_sprites["fg1"] = g2
 my_sprites["fg2"] = g3
 my_sprites["p"] = p
@@ -87,8 +94,11 @@ print("sorted reaady")
 counter = 0     
 
 while True:
-    if p.return_perfect_colission(my_sprites["fg2"]):
-        p.kill()
+    if p.return_perfect_colission(my_sprites["fg1"]):
+        if my_sprites["p"].z_position >= my_sprites["fg1"].z_position:
+            my_sprites["fg1"].set_transparency(30)
+    else:
+        my_sprites["fg1"].set_transparency(255)
     if counter <= 4:
         counter += 1
     else:
