@@ -12,7 +12,7 @@ def statue(location=(0,height/2,0)):
 def street_horizontal(location=(0,height/2,0),lenght=750):
     v = location[2]+10
     statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
-    statue.set_image(my_details.image_at((16*2,16*40,32,32)),True)
+    statue.set_image(my_details.image_at((16*5,16*38,32,32)),True)
     statue.z_position = 10000000
     statue.set_size((lenght,200))
     return statue
@@ -20,9 +20,18 @@ def street_horizontal(location=(0,height/2,0),lenght=750):
 def street_vertical(location=(0,height/2,0),lenght=750):
     v = location[2]+10
     statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
-    statue.set_image(my_details.image_at((16*1,16*40,32,32)),True)
+    statue.set_image(my_details.image_at((16*7,16*38,32,32)),True)
     statue.z_position = 10000000
     statue.set_size((200,lenght))
+    return statue
+
+def street_curve_right_up(location=(0,height/2,0),turn=(False,False)):
+    v = location[2]+10
+    statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
+    statue.set_image(my_details.image_at((16*9,16*38,32,32)),True)
+    statue.z_position = 10000000
+    statue.image = pygame.transform.flip(statue.image,turn[0],turn[1])
+    statue.set_size((200,200))
     return statue
 
 def skyscraper(location=(0,height/2,0)):
@@ -86,14 +95,15 @@ p.z_position = 0
 my_sprites = {}
 living_house = mini_house((width/2-200,height/2,85))
 tanne = tree((width/2-100,height/2,40))
-street1 = street_horizontal((width/2-300,height/2,-100),1500)
-street2 = street_vertical((width/2-300,height/2,-100),500)
+street1 = street_horizontal((width/2+450,height/2,-100),1500)
+street2 = street_vertical((width/2-300,height/2,0),500)
 players_house = skyscraper((width/2,height/2,100))
-my_sprites["player_home"] = players_house
+my_sprites["player_home_transp"] = players_house
 my_sprites["street1"] = street1
 my_sprites["tree1"] = tanne
 my_sprites["stret2"] = street2
-my_sprites["house1"] = living_house
+my_sprites["house1_transp"] = living_house
+my_sprites["turn"] = street_curve_right_up((width/2-300,height/2,-100))
 my_sprites["p"] = p
 out_of_charakter = False
 #you have to summand y+(z+z:4)*-1
@@ -125,11 +135,15 @@ print("sorted reaady")
 counter = 0     
 
 while True:
-    if p.return_perfect_colission(my_sprites["player_home"]):
-        if my_sprites["p"].z_position >= my_sprites["player_home"].z_position:
-            my_sprites["player_home"].set_transparency(30)
-    else:
-        my_sprites["player_home"].set_transparency(255)
+    for key in my_sprites:
+        if "transp" in key:
+            if p.return_perfect_colission(my_sprites[key]):
+                if my_sprites["p"].z_position >= my_sprites[key].z_position:
+                    my_sprites[key].set_transparency(30)
+            else:
+                my_sprites[key].set_transparency(255)
+        else:
+            my_sprites[key].set_transparency(255)
 
     if counter <= 4:
         counter += 1
