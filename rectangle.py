@@ -138,6 +138,7 @@ class Rectangle():
             self.original_rect.set_alpha(self.transparency)
             self.rect = self.original_rect.copy()
             self.rect_rect = self.rect.get_rect(center=self.position)
+            
     def return_perfect_colission(self,other_rectangle):
         my_mask = pygame.mask.from_surface(self.image)
         other_mask = pygame.mask.from_surface(other_rectangle.image)

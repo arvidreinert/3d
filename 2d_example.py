@@ -39,7 +39,7 @@ def skyscraper(location=(0,height/2,0)):
     statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
     statue.set_image(my_houses.image_at((16*3,16*45,48,128)),True)
     statue.z_position = location[2]
-    statue.set_size((150,325))
+    statue.set_size((150,310))
     return statue 
 
 def mini_house(location=(0,height/2,0)):
@@ -137,7 +137,7 @@ counter = 0
 while True:
     for key in my_sprites:
         if "transp" in key:
-            if p.return_perfect_colission(my_sprites[key]):
+            if p.get_colliding_with(my_sprites[key]):
                 if my_sprites["p"].z_position >= my_sprites[key].z_position:
                     my_sprites[key].set_transparency(30)
             else:
