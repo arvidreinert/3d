@@ -41,6 +41,14 @@ def skyscraper(location=(0,height/2,0)):
     statue.set_size((150,310))
     return statue 
 
+def cosy_shop(location=(0,height/2,0)):
+    v = location[2]+10
+    statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
+    statue.set_image(my_houses.image_at((16*2,16*62,65,80)),True)
+    statue.z_position = location[2]
+    statue.set_size((150,150))
+    return statue 
+
 def mini_house(location=(0,height/2,0)):
     v = location[2]-10
     statue = Rectangle((200,200),(location[0],location[1]+v*-1),(250,0,0),"16_p_tileset.png")
@@ -95,15 +103,17 @@ my_sprites = {}
 living_house = mini_house((width/2-200,height/2,85))
 tanne = tree((width/2-100,height/2,40))
 street1 = street_horizontal((width/2+450,height/2,-100),1500)
-street2 = street_vertical((width/2-300,height/2,0),300)
+street2 = street_vertical((width/2-300,height/2,0),200)
 players_house = skyscraper((width/2,height/2,100))
 my_sprites["player_home_transp"] = players_house
 my_sprites["street1"] = street1
 my_sprites["tree1"] = tanne
+my_sprites["street3"] = street_horizontal((width/2+450,height/2,100),1500)
 my_sprites["stret2"] = street2
 my_sprites["house1_transp"] = living_house
 my_sprites["turn"] = street_curve_right_up((width/2-300,height/2,-100))
-my_sprites["turn1"] = street_curve_right_up((width/2-400,height/2,245))
+my_sprites["turn1"] = street_curve_right_up((width/2-400,height/2,100))
+my_sprites["shop1"] = cosy_shop((width/2+100,height/2,300))
 my_sprites["p"] = p
 out_of_charakter = False
 #you have to summand y+(z+z:4)*-1
