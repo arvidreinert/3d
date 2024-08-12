@@ -115,6 +115,8 @@ my_sprites["turn"] = street_curve_right_up((width/2-300,height/2,-100))
 my_sprites["turn1"] = street_curve_right_up((width/2-400,height/2,100))
 my_sprites["shop1"] = cosy_shop((width/2+100,height/2,300))
 my_sprites["p"] = p
+my_out_world_sprites = my_sprites
+my_shop1_sprites = {}
 out_of_charakter = False
 #you have to summand y+(z+z:4)*-1
 printing_row = []
@@ -145,7 +147,18 @@ print("sorted reaady")
 counter = 0     
 
 while True:
-    my_sprites["turn1"].set_rotation(-90)
+    if p.get_colliding_with(my_sprites["shop1"]):
+        if my_sprites["shop1"].get_point_collide(pygame.mouse.get_pos()):
+            my_sprites = my_shop1_sprites
+            for key in my_sprites:
+                if printing_row != []:
+                    make_row(key)
+                else:
+                    printing_row.append(key)
+                print(f"loading{key}")
+                print("sorted reaady")
+    if my_sprites == my_out_world_sprites:
+        my_sprites["turn1"].set_rotation(-90)
     for key in my_sprites:
         if "transp" in key:
             if p.get_colliding_with(my_sprites[key]):
